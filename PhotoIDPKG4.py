@@ -3,7 +3,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 
 # Import functions from GSnaPx
-from GSnapX import print_with_delay, resize_and_crop_image, resize_and_crop_passport_image, add_border, create_folder_structure
+from GSnapX import fetch_image_file, print_with_delay, resize_and_crop_image, resize_and_crop_passport_image, add_border, create_folder_structure
 
 def generate_and_save_images(image_path, folders):
     print_with_delay("Generating and saving images directly to folders...")
@@ -93,21 +93,21 @@ def save_pdf(images, output_file):
     os.startfile(output_file)    
 
 if __name__ == "__main__":
-    # Path to the original image
-    image_path = "original_image.png"  # adjust the path if your image is not in the same directory as your script
+    #Fetch the image file
+    image_path = fetch_image_file() # This will search for "original_image" with .png, .jpg, or .jpeg extension
 
-    print_with_delay("Starting script...")
+    if not image_path:
+        print("No image file named 'orginal_image' found with the specified extensions.")
+    else:
+        # image_path = "original_image.png"  
 
-    # Create folder structure for saving images
-    folders = create_folder_structure()
+        print_with_delay("Starting script...")
 
-    # Generate and save images directly to their respective folders
-    all_images = generate_and_save_images(image_path, folders)  
+        folders = create_folder_structure()
+        all_images = generate_and_save_images(image_path, folders)
+        save_pdf(all_images, "all_images.pdf")
 
-    # Save images to a single PDF file
-    save_pdf(all_images, "all_images.pdf")
-    
-    print_with_delay("Script completed.")
+        print_with_delay("Script completed.")
 
 
 

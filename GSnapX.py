@@ -1,9 +1,22 @@
 import os
+import glob
 from datetime import datetime
 from PIL import Image, ImageOps
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import time
+
+def fetch_image_file(base_name="original_image", extensions=("png","jpg","jpeg")):
+    """"Fetch the image file with the given base name and extensions."""""
+    for ext in extensions:
+        pattern = f"{base_name}.{ext}"
+        matching_files = glob.glob(pattern)
+
+        if matching_files:
+            # Return the first matching file
+            return matching_files[0]
+        
+    return None
 
 def print_with_delay(message, delay=0):
     """Print a message with a delay."""
@@ -145,13 +158,18 @@ def save_pdf(images, output_file):
     os.startfile(output_file)
 
 if __name__ == "__main__":
-    image_path = "original_image.png"  # Adjust the path if your image is not in the same directory as your script
+    #Fetch the image file
+    image_path = fetch_image_file() # This will search for "original_image" with .png, .jpg, or .jpeg extension
 
-    print_with_delay("Starting script...")
+    if not image_path:
+        print("No image file named 'orginal_image' found with the specified extensions.")
+    else:
+        # image_path = "original_image.png"  
 
-    folders = create_folder_structure()
-    all_images = generate_and_save_images(image_path, folders)
-    save_pdf(all_images, "all_images.pdf")
+        print_with_delay("Starting script...")
 
-    print_with_delay("Script completed.")
+        folders = create_folder_structure()
+        all_images = generate_and_save_images(image_path, folders)
+        save_pdf(all_images, "all_images.pdf")
 
+        print_with_delay("Script completed.")
