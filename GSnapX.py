@@ -90,7 +90,43 @@ def create_folder_structure(create_2x2=False, create_1x1=False, create_passport=
 
     return folders
 
-def generate_and_save_images(image_path, folders):
+# def generate_and_save_images(image_path, folders):
+#     print_with_delay("Generating and saving images directly to folders...")
+#     dpi = 300  # Standard print DPI
+#     size_2x2 = (2 * dpi, 2 * dpi)  # 2x2 inches
+#     size_1x1 = (1 * dpi, 1 * dpi)  # 1x1 inches
+
+#     image_2x2 = resize_and_crop_image(image_path, size_2x2)
+#     image_1x1 = resize_and_crop_image(image_path, size_1x1)
+#     image_passport = resize_and_crop_passport_image(image_path)
+
+#     image_2x2 = add_border(image_2x2, border_size=2, border_color=(0, 0, 0))
+#     image_1x1 = add_border(image_1x1, border_size=2, border_color=(0, 0, 0))
+#     image_passport = add_border(image_passport, border_size=2, border_color=(0, 0, 0))
+
+#     all_images = []
+
+#     for idx in range(4):
+#         image_2x2_path = os.path.join(folders["2x2"], f"2x2_image_{idx + 1}.png")
+#         print_with_delay(f"Saving 2x2 image {idx + 1} to {image_2x2_path}...")
+#         image_2x2.save(image_2x2_path, dpi=(300, 300))
+#         all_images.append(image_2x2_path)
+
+#     for idx in range(8):
+#         image_1x1_path = os.path.join(folders["1x1"], f"1x1_image_{idx + 1}.png")
+#         print_with_delay(f"Saving 1x1 image {idx + 1} to {image_1x1_path}...")
+#         image_1x1.save(image_1x1_path, dpi=(300, 300))
+#         all_images.append(image_1x1_path)
+
+#     for idx in range(5):
+#         image_passport_path = os.path.join(folders["passport"], f"passport_image_{idx + 1}.png")
+#         print_with_delay(f"Saving passport image {idx + 1} to {image_passport_path}...")
+#         image_passport.save(image_passport_path, dpi=(300, 300))
+#         all_images.append(image_passport_path)
+
+#     return all_images
+
+def generate_and_save_images(image_path, folders, qty_2x2=4, qty_1x1=8, qty_passport=5):
     print_with_delay("Generating and saving images directly to folders...")
     dpi = 300  # Standard print DPI
     size_2x2 = (2 * dpi, 2 * dpi)  # 2x2 inches
@@ -106,19 +142,19 @@ def generate_and_save_images(image_path, folders):
 
     all_images = []
 
-    for idx in range(4):
+    for idx in range(qty_2x2):
         image_2x2_path = os.path.join(folders["2x2"], f"2x2_image_{idx + 1}.png")
         print_with_delay(f"Saving 2x2 image {idx + 1} to {image_2x2_path}...")
         image_2x2.save(image_2x2_path, dpi=(300, 300))
         all_images.append(image_2x2_path)
 
-    for idx in range(8):
+    for idx in range(qty_1x1):
         image_1x1_path = os.path.join(folders["1x1"], f"1x1_image_{idx + 1}.png")
         print_with_delay(f"Saving 1x1 image {idx + 1} to {image_1x1_path}...")
         image_1x1.save(image_1x1_path, dpi=(300, 300))
         all_images.append(image_1x1_path)
 
-    for idx in range(5):
+    for idx in range(qty_passport):
         image_passport_path = os.path.join(folders["passport"], f"passport_image_{idx + 1}.png")
         print_with_delay(f"Saving passport image {idx + 1} to {image_passport_path}...")
         image_passport.save(image_passport_path, dpi=(300, 300))
@@ -165,12 +201,15 @@ if __name__ == "__main__":
     image_path = fetch_image_file() # This will search for "original_image" with .png, .jpg, or .jpeg extension
 
     if not image_path:
-        print("No image file named 'orginal_image' found with the specified extensions.")
+        print("No image file named 'orginal_image' found in the root folder.")
     else:
         print_with_delay("Starting script...")
 
-        folders = create_folder_structure()
-        all_images = generate_and_save_images(image_path, folders)
+        folders = create_folder_structure(create_2x2=True, create_1x1=True, create_passport=True)
+        print(folders)
+
+        all_images = generate_and_save_images(image_path, folders, qty_2x2=4, qty_1x1=0, qty_passport=0)
+
         save_pdf(all_images, "all_images.pdf")
 
         print_with_delay("Script completed.")
