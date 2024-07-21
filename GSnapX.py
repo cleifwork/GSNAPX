@@ -72,15 +72,18 @@ def add_border(image, border_size=1, border_color=(0, 0, 0)):
     print_with_delay(f"Adding border of size {border_size} and color {border_color} to image...")
     return ImageOps.expand(image, border=border_size, fill=border_color)
 
-def create_folder_structure():
-    print_with_delay("Creating folder structure for saving images...")
+def create_folder_structure(create_2x2=False, create_1x1=False, create_passport=False):
+    print("Creating folder structure for saving images...")
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
 
-    folders = {
-        "2x2": os.path.join("2x2", f"PID_{timestamp}"),
-        "1x1": os.path.join("1x1", f"PID_{timestamp}"),
-        "passport": os.path.join("passport", f"PID_{timestamp}")
-    }
+    folders = {}
+    
+    if create_2x2:
+        folders["2x2"] = os.path.join("2x2", f"PID_{timestamp}")
+    if create_1x1:
+        folders["1x1"] = os.path.join("1x1", f"PID_{timestamp}")
+    if create_passport:
+        folders["passport"] = os.path.join("passport", f"PID_{timestamp}")
 
     for folder in folders.values():
         os.makedirs(folder, exist_ok=True)
@@ -164,8 +167,6 @@ if __name__ == "__main__":
     if not image_path:
         print("No image file named 'orginal_image' found with the specified extensions.")
     else:
-        # image_path = "original_image.png"  
-
         print_with_delay("Starting script...")
 
         folders = create_folder_structure()

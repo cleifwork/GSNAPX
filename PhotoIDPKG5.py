@@ -100,8 +100,6 @@ if __name__ == "__main__":
     if not image_path:
         print("No image file named 'orginal_image' found with the specified extensions.")
     else:
-        # image_path = "original_image.png"  
-
         print_with_delay("Starting script...")
 
         folders = create_folder_structure()

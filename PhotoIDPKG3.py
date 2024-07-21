@@ -94,11 +94,11 @@ if __name__ == "__main__":
     if not image_path:
         print("No image file named 'orginal_image' found with the specified extensions.")
     else:
-        # image_path = "original_image.png"  
-
         print_with_delay("Starting script...")
 
-        folders = create_folder_structure()
+        folders = create_folder_structure(create_1x1=True)
+        print(folders)
+
         all_images = generate_and_save_images(image_path, folders)
         save_pdf(all_images, "all_images.pdf")
 
