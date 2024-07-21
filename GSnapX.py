@@ -126,7 +126,7 @@ def create_folder_structure(create_2x2=False, create_1x1=False, create_passport=
 
 #     return all_images
 
-def generate_and_save_images(image_path, folders, qty_2x2=4, qty_1x1=8, qty_passport=5):
+def generate_and_save_images(image_path, folders, qty_2x2=0, qty_1x1=0, qty_passport=0):
     print_with_delay("Generating and saving images directly to folders...")
     dpi = 300  # Standard print DPI
     size_2x2 = (2 * dpi, 2 * dpi)  # 2x2 inches
@@ -142,23 +142,44 @@ def generate_and_save_images(image_path, folders, qty_2x2=4, qty_1x1=8, qty_pass
 
     all_images = []
 
-    for idx in range(qty_2x2):
-        image_2x2_path = os.path.join(folders["2x2"], f"2x2_image_{idx + 1}.png")
-        print_with_delay(f"Saving 2x2 image {idx + 1} to {image_2x2_path}...")
-        image_2x2.save(image_2x2_path, dpi=(300, 300))
-        all_images.append(image_2x2_path)
+    if qty_2x2 != 0 and qty_1x1 != 0 and qty_passport != 0:
 
-    for idx in range(qty_1x1):
-        image_1x1_path = os.path.join(folders["1x1"], f"1x1_image_{idx + 1}.png")
-        print_with_delay(f"Saving 1x1 image {idx + 1} to {image_1x1_path}...")
-        image_1x1.save(image_1x1_path, dpi=(300, 300))
-        all_images.append(image_1x1_path)
+        for idx in range(qty_2x2):
+            image_2x2_path = os.path.join(folders["2x2"], f"2x2_image_{idx + 1}.png")
+            print_with_delay(f"Saving 2x2 image {idx + 1} to {image_2x2_path}...")
+            image_2x2.save(image_2x2_path, dpi=(300, 300))
+            all_images.append(image_2x2_path)
 
-    for idx in range(qty_passport):
-        image_passport_path = os.path.join(folders["passport"], f"passport_image_{idx + 1}.png")
-        print_with_delay(f"Saving passport image {idx + 1} to {image_passport_path}...")
-        image_passport.save(image_passport_path, dpi=(300, 300))
-        all_images.append(image_passport_path)
+        for idx in range(qty_passport):
+            image_passport_path = os.path.join(folders["passport"], f"passport_image_{idx + 1}.png")
+            print_with_delay(f"Saving passport image {idx + 1} to {image_passport_path}...")
+            image_passport.save(image_passport_path, dpi=(300, 300))
+            all_images.append(image_passport_path)            
+
+        for idx in range(qty_1x1):
+            image_1x1_path = os.path.join(folders["1x1"], f"1x1_image_{idx + 1}.png")
+            print_with_delay(f"Saving 1x1 image {idx + 1} to {image_1x1_path}...")
+            image_1x1.save(image_1x1_path, dpi=(300, 300))
+            all_images.append(image_1x1_path)
+    else: 
+        
+        for idx in range(qty_2x2):
+            image_2x2_path = os.path.join(folders["2x2"], f"2x2_image_{idx + 1}.png")
+            print_with_delay(f"Saving 2x2 image {idx + 1} to {image_2x2_path}...")
+            image_2x2.save(image_2x2_path, dpi=(300, 300))
+            all_images.append(image_2x2_path)
+
+        for idx in range(qty_1x1):
+            image_1x1_path = os.path.join(folders["1x1"], f"1x1_image_{idx + 1}.png")
+            print_with_delay(f"Saving 1x1 image {idx + 1} to {image_1x1_path}...")
+            image_1x1.save(image_1x1_path, dpi=(300, 300))
+            all_images.append(image_1x1_path)
+
+        for idx in range(qty_passport):
+            image_passport_path = os.path.join(folders["passport"], f"passport_image_{idx + 1}.png")
+            print_with_delay(f"Saving passport image {idx + 1} to {image_passport_path}...")
+            image_passport.save(image_passport_path, dpi=(300, 300))
+            all_images.append(image_passport_path)
 
     return all_images
 
@@ -208,7 +229,7 @@ if __name__ == "__main__":
         folders = create_folder_structure(create_2x2=True, create_1x1=True, create_passport=True)
         print(folders)
 
-        all_images = generate_and_save_images(image_path, folders, qty_2x2=4, qty_1x1=0, qty_passport=0)
+        all_images = generate_and_save_images(image_path, folders, qty_2x2=4, qty_1x1=8, qty_passport=5)
 
         save_pdf(all_images, "all_images.pdf")
 

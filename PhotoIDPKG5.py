@@ -13,9 +13,9 @@ def save_pdf(images, output_file):
     # Define dimensions for each type of image
     dpi = 74
     dimensions = [
-        (2 * dpi, 2 * dpi),  # 2x2 inches
+        (2 * dpi, 2 * dpi),  # 2x2 inches     
         (1 * dpi, 1 * dpi),  # 1x1 inches
-        (int(35 / 25.4 * dpi), int(45 / 25.4 * dpi))   # Passport size (35mm x 45mm)
+        (int(35 / 25.4 * dpi), int(45 / 25.4 * dpi))   # Passport size (35mm x 45mm)   
     ]
 
     # Initial positions
@@ -28,13 +28,13 @@ def save_pdf(images, output_file):
         if idx < 4:
             img_width, img_height = dimensions[0]
         elif idx < 8:
-            img_width, img_height = dimensions[1]
-        else:
             img_width, img_height = dimensions[2]
+        else:
+            img_width, img_height = dimensions[1]
 
          # Add spacer
-        if idx == 10:  # Add spacer after the first three 2x2 and two 1x1 image 
-            x += dimensions[1][0] * 4  # Passport spacer equivalent to 4 images
+        if idx == 10:  # Add spacer after the four 2x2 and four passport image 
+            x += dimensions[2][0] * 4  # Passport spacer equivalent to 4 images
 
         # Draw the image
         c.drawImage(image_path, x, y - img_height, width=img_width, height=img_height)
