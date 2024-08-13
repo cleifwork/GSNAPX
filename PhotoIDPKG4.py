@@ -57,6 +57,7 @@ if __name__ == "__main__":
 
     if not image_path:
         print("No image file named 'orginal_image' found in the root folder.")
+        input("Press Enter to continue...")
     else:
         print_with_delay("Starting script...")
  
