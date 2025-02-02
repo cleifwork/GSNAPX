@@ -75,7 +75,7 @@ pip install Pillow
 - Put optimizations here...
 
 ## Screenshots
-![App Screenshot](https://drive.google.com/uc?export=view&id=15bYTzCXOX3IdBGgmIzEnbMj0rtQWGHWZ)
+![App Screenshot](https://drive.google.com/uc?export=view&id=1vB-UE5LHv_AaG03QSUkWvbYAWCZZ5dfM)
 
 ## Support
 #### For support, join our FB Group
