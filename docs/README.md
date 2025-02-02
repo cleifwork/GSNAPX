@@ -37,8 +37,8 @@ GSNAPX is a Python-based desktop application designed to streamline the process 
 
 ## Demo
 
--   [GConnect App Demo](https://www.youtube.com/watch?v=eXLdvv9VYJA)
--   [GConnect Installation & Configuration](https://www.youtube.com/watch?v=hjWmLe4AmSo)
+- [GConnect App Demo](https://www.youtube.com/watch?v=eXLdvv9VYJA)
+- [GConnect Installation & Configuration](https://www.youtube.com/watch?v=hjWmLe4AmSo)
 
 
 ## Authors
@@ -61,21 +61,21 @@ pip install packaging
 pip install Pillow
 ```
 		
--   Download the **[GSNAPX](https://github.com/cleifwork/GSNAPX)**
--   Click Code > Download Zip
--   Extract main folder to your Desktop
--   Rename main folder to **'GSNAPX'**
--   Launch the app thru _'LaunchPad.bat'_ or the _"GSnapX"_ shortcut.
+- Download the **[GSNAPX](https://github.com/cleifwork/GSNAPX)**
+- Click Code > Download Zip
+- Extract main folder to your Desktop
+- Rename main folder to **'GSNAPX'**
+- Launch the app thru _'LaunchPad.bat'_ or the _"GSnapX"_ shortcut.
 
 > [!NOTE] 
 > If _"Windows protected..."_ SmartScreen window pops
--   Click _"More info"_ > Run anyway
+- Click _"More info"_ > Run anyway
 
 ## Optimizations
 - Put optimizations here...
 
 ## Screenshots
-![App Screenshot](https://drive.google.com/uc?export=view&id=1Vro6VWORnAFdjA1cgl-9VerqrLVbPYu7)
+![App Screenshot](https://drive.google.com/uc?export=view&id=15bYTzCXOX3IdBGgmIzEnbMj0rtQWGHWZ)
 
 ## Support
 #### For support, join our FB Group
@@ -90,7 +90,7 @@ pip install Pillow
 ## Related
 > [!TIP] 
 > **Ideal Voucher Printing Preference**
-- Layout              : **Portrai**
+- Layout              : **Portrait**
 - Paper Size          : **A4**
 - Margin              : **None**   
 
